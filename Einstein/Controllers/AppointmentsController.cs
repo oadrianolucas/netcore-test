@@ -48,10 +48,5 @@ namespace Einstein.Controllers
             await _iappointments.PostAppointment(appointment);
             return Ok(msgSuccess);
         }
-
-        private bool AppointmentExists(int id)
-        {
-            return _iappointments.AppointmentExists(id);
-        }
     }
 }

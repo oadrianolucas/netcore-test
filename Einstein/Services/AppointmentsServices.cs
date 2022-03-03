@@ -58,7 +58,7 @@ namespace Einstein.Services
         {
             return _context.Appointments.Where(x => x.IdMedical == id).ToList();
         }
-        public List<Appointment> GetAppointmentsPatients(int id)
+        public List<Appointment> GetAppointmentsPatient(int id)
         {
             return _context.Appointments.Where(x => x.IdPatient == id).ToList();
         }

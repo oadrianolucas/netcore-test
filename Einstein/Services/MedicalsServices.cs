@@ -13,12 +13,6 @@ namespace Einstein.Services
         {
             _context = context;
         }
-
-        public Task<ActionResult<IEnumerable<Appointment>>> GetAppointmentsPatient(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool MedicalExists(int id)
         {
             return _context.Medicals.Any(e => e.Id == id);

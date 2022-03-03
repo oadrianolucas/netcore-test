@@ -32,7 +32,7 @@ namespace Einstein.Services
         }
         public bool ValidateMedical(int Id)
         {
-            Medical medical = _context.Medicals.Where(e => e.Id == Id).FirstOrDefault();
+            Medical medical = _context.Medicals.Where(e => e.Id == Id).FirstOrDefault(); 
             return medical == null ? false : true;
         }
         public bool ValidatePatient(int Id)
@@ -53,6 +53,14 @@ namespace Einstein.Services
             e.Schedule.AddHours(1) > Schedule &&
             e.IdPatient == Id).FirstOrDefault();
             return IdPatient == null ? true : false;
+        }
+        public List<Appointment> GetAppointmentsMedical(int id)
+        {
+            return _context.Appointments.Where(x => x.IdMedical == id).ToList();
+        }
+        public List<Appointment> GetAppointmentsPatients(int id)
+        {
+            return _context.Appointments.Where(x => x.IdPatient == id).ToList();
         }
     }
 }

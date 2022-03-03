@@ -19,11 +19,9 @@ namespace Einstein.Controllers
         string msgSuccess = "Consulta salva com sucesso.";
 
         private IAppointmentsServices _iappointments;
-        private EinsteinContext _context;
 
-        public AppointmentsController(EinsteinContext context, IAppointmentsServices iappointments)
+        public AppointmentsController(IAppointmentsServices iappointments)
         {
-            _context = context;
             _iappointments = iappointments;
         }
 

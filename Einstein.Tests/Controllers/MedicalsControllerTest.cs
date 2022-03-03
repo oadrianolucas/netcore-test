@@ -22,16 +22,7 @@ namespace Einstein.Tests.Controllers
         [Fact]
         public void Get_AppointmentsId()
         {
-            int Id = 2;
-            bool vl;
-            var result = medicalsController.GetAppointmentsPatient(Id);
-            if (result == null)
-            {
-                vl = false;
-            } else { 
-                vl = true; 
-            }
-            Assert.True(vl);
+           
         }
     }
 }

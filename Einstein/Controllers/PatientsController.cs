@@ -14,37 +14,29 @@ namespace Einstein.Controllers
         private string msgNotFoundPatient = "Error na ação: Infelizmente não localizamos o paciente selecionado.";
         private string msgPatientNotAppointment = "O paciente selecionado não tem consultas agendadas.";
 
-        private EinsteinContext _context;
         private IPatientsServices _iapatients;
-
-        public PatientsController(EinsteinContext context)
+        private IAppointmentsServices _iappointments;
+        public PatientsController(IAppointmentsServices iappointments, IPatientsServices iapatients)
         {
-            _context = context;
+            _iapatients = iapatients;
+            _iappointments = iappointments;
         }
 
         // GET: api/Patients/appointments/list/2
         [HttpGet("appointments/list/{id}")]
         public async Task<ActionResult<IEnumerable<Appointment>>> GetAppointmentsPatient(int id)
         {
-            var appointment = await _context.Appointments.Where(x => x.IdPatient == id).ToListAsync();
-            var patient = await _context.Patients.FindAsync(id);
-            if (patient == null)
+            var patient = _iappointments.GetAppointmentsPatient(id);
+            if (patient.Count > 0)
             {
-                return Ok(msgNotFoundPatient);
+                return patient;
             }
             else
             {
-                if (appointment.Count == 0)
-                {
-                    return Ok(msgPatientNotAppointment);
-                }
-                return appointment;
+                if (!_iapatients.PatientExists(id))
+                    return Ok(msgNotFoundPatient);
+                return Ok(msgPatientNotAppointment);
             }
-        }
-
-        private bool PatientExists(int id)
-        {
-            return _iapatients.PatientExists(id);
         }
     }
 }

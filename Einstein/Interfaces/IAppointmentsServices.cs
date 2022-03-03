@@ -12,5 +12,8 @@ namespace Einstein.Interfaces
         public bool ValidatePatient(int Id);
         public bool ValidateMedicalAppointments(int Id, DateTime Schedule);
         public bool ValidatePatientsAppointments(int Id, DateTime Schedule);
+        public List<Appointment> GetAppointmentsMedical(int id);
+        public List<Appointment> GetAppointmentsPatient(int id);
+
     }
 }

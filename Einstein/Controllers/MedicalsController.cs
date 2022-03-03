@@ -11,40 +11,32 @@ namespace Einstein.Controllers
     [ApiController]
     public class MedicalsController : ControllerBase
     {
-        private string msgNotFoundMedical = "Error na ação: Infelizmente não localizamos o médico selecionado.";
-        private string msgMedicalNotAppointment = "O médico selecionado não tem consultas agendadas.";
+        string msgNotFoundMedical = "Error na ação: Infelizmente não localizamos o médico selecionado.";
+        string msgMedicalNotAppointment = "O médico selecionado não tem consultas agendadas.";
 
         private IMedicalsServices _imedicals;
-        private EinsteinContext _context;
+        private IAppointmentsServices _iappointments;
         
-        public MedicalsController(EinsteinContext context)
+        public MedicalsController(IAppointmentsServices iappointments, IMedicalsServices imedicals)
         {
-            _context = context;
+            _imedicals = imedicals;
+            _iappointments = iappointments;
         }
 
         // GET: api/Medicals/appointments/list/2
         [HttpGet("appointments/list/{id}")]
-        public async Task<ActionResult<IEnumerable<Appointment>>> GetAppointmentsPatient(int id)
+        public async Task<ActionResult<IEnumerable<Appointment>>> GetAppointmentsMedical(int id)
         {
-            var appointment = await _context.Appointments.Where(x => x.IdMedical == id).ToListAsync();
-            var medical = await _context.Medicals.FindAsync(id);
-            if (medical == null)
+            var medical = _iappointments.GetAppointmentsMedical(id);
+            if (medical.Count > 0)
+            {                   
+                return medical;
+            } else
             {
-               return Ok(msgNotFoundMedical);
-            }
-            else
-            {
-                if (appointment.Count == 0)
-                {                   
-                    return Ok(msgMedicalNotAppointment);
-                }
-                return appointment;
-            }
-        }
-   
-        private bool MedicalExists(int id)
-        {
-            return _imedicals.MedicalExists(id);
+                if (!_imedicals.MedicalExists(id))
+                    return Ok(msgNotFoundMedical);
+                return Ok(msgMedicalNotAppointment);
+            }            
         }
     }
 }

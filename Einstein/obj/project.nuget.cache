@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "t96i+JbBFKbO4vrZ3iBOqIN/GKFFBBUiTmzuE38LjYyl1QDqkLFTD1MX4kStyny1TXzPQCBnLcahVEz3cjvbzQ==",
+  "dgSpecHash": "lk1a2KuQ9OplrFOJOcCGp5hnFLncjQxrZDH1fewuJSkEURqAsPxwZYwObAFKzr6AfVJnuC+nJTqfuHZD5ddORw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Adriano\\Desktop\\netcore-test\\Einstein\\Einstein.csproj",
+  "projectFilePath": "C:\\Users\\Adriano\\Pictures\\netcore-test\\Einstein\\Einstein.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Adriano\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Adriano\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

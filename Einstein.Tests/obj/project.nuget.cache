@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mAPApXvKaIyWYkm/IoTTReN4NiJDyzJRdEyHEIDXDP8StIgHH299sOTjUb7w3A4Uie6HKtpVc1zz8z7vvn+ZvA==",
+  "dgSpecHash": "9XRTH+4Js5SjkmJdMSG51hctFlUcxLGI5RR3oV0ezUmFWNABsdvPe1MTBSCsT8Ny9XJ73wFoqSwCbtdLxB95Bg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Adriano\\Desktop\\netcore-test\\Einstein.Tests\\Einstein.Tests.csproj",
+  "projectFilePath": "C:\\Users\\Adriano\\Pictures\\netcore-test\\Einstein.Tests\\Einstein.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Adriano\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\Adriano\\.nuget\\packages\\humanizer.core\\2.2.0\\humanizer.core.2.2.0.nupkg.sha512",

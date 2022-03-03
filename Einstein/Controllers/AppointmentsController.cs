@@ -3,124 +3,57 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Einstein.Data;
 using Einstein.Models;
+using Einstein.Interfaces;
 
 namespace Einstein.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class AppointmentsController : ControllerBase
+
     {
-        private readonly EinsteinContext _context;
+        string msgNotFoundMedical = "Error na ação: Infelizmente não localizamos o médico selecionado.";
+        string msgNotFoundPatient = "Error na ação: Infelizmente não localizamos o paciente selecionado.";
+        string msgMedicalHaveAnAppointment = "Que pena, o médico selecionado já tem consulta neste horário.";
+        string msgPatientHaveAnAppointment = "O paciente selecionado já tem uma consulta neste horário.";
+        string msgSuccess = "Consulta salva com sucesso.";
 
-        private string msgNotFoundMedical = "Error na ação: Infelizmente não localizamos o médico selecionado.";
-        private string msgNotFoundPatient = "Error na ação: Infelizmente não localizamos o paciente selecionado.";
-        private string msgMedicalHaveAnAppointment = "Que pena, o médico selecionado já tem consulta neste horário.";
-        private string msgPatientHaveAnAppointment = "O paciente selecionado já tem uma consulta neste horário.";
+        private IAppointmentsServices _iappointments;
+        private EinsteinContext _context;
 
-        public AppointmentsController(EinsteinContext context)
+        public AppointmentsController(EinsteinContext context, IAppointmentsServices iappointments)
         {
             _context = context;
+            _iappointments = iappointments;
         }
-        // GET: api/Appointments
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Appointment>>> GetAppointments()
-        {
-            return await _context.Appointments.ToListAsync();
-        }
-        // GET: api/Appointments/2
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Appointment>> GetAppointment(int id)
-        {
-            var appointment = await _context.Appointments.FindAsync(id);
 
-            if (appointment == null)
-            {
-                return NotFound();
-            }
-
-            return appointment;
-        }
-        // PUT: api/Appointments/2
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAppointment(int id, Appointment appointment)
-        {
-            if (id != appointment.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(appointment).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AppointmentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
         // POST: api/Appointments
         [HttpPost]
         public async Task<ActionResult<Appointment>> PostAppointment(Appointment appointment)
         {
-            var validade = await _context.Appointments.Where(x => x.Schedule <= appointment.Schedule &&
-            x.Schedule.AddHours(1) > appointment.Schedule &&
-            (x.IdMedical == appointment.IdMedical || x.IdPatient == appointment.IdPatient)).FirstOrDefaultAsync();
+            var validateNotFound = _iappointments.ValidateMedical(appointment.IdMedical) == false ? msgNotFoundMedical :
+                  _iappointments.ValidatePatient(appointment.IdPatient) == false ? msgNotFoundPatient : null;
 
-            var medical = await _context.Medicals.FindAsync(appointment.IdMedical);
-            var patient = await _context.Patients.FindAsync(appointment.IdPatient);
+            var validadeSchedule = _iappointments.ValidateMedicalAppointments(appointment.IdMedical, appointment.Schedule)
+                == false ? msgMedicalHaveAnAppointment : _iappointments.ValidatePatientsAppointments(appointment.IdPatient, appointment.Schedule) 
+                == false ? msgPatientHaveAnAppointment : null;
 
-            if (medical == null || patient == null)
+            if (validateNotFound != null)
             {
-                var msg = medical == null ? msgNotFoundMedical : 
-                    patient == null ? msgNotFoundPatient : null;
-                return Ok(msg);
-            } 
-            else
-            {
-                if (validade != null)
-                {
-                    var msg = appointment.IdMedical == validade.IdMedical ? msgMedicalHaveAnAppointment :
-                        appointment.IdPatient == validade.IdPatient ? msgPatientHaveAnAppointment : null;
-                    return Ok(msg);
-                }
-                else
-                {
-                    _context.Appointments.Add(appointment);
-                    await _context.SaveChangesAsync();
-                    return CreatedAtAction("GetAppointment", new { id = appointment.Id }, appointment);
-                }
-            }       
-        }
-        // DELETE: api/Appointments/2
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAppointment(int id)
-        {
-            var appointment = await _context.Appointments.FindAsync(id);
-            if (appointment == null)
-            {
-                return NotFound();
+                return Ok(validateNotFound);
+
             }
-
-            _context.Appointments.Remove(appointment);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            else if (validadeSchedule != null)
+            {
+                return Ok(validadeSchedule);
+            } 
+            await _iappointments.PostAppointment(appointment);
+            return Ok(msgSuccess);
         }
 
         private bool AppointmentExists(int id)
         {
-            return _context.Appointments.Any(e => e.Id == id);
+            return _iappointments.AppointmentExists(id);
         }
     }
 }

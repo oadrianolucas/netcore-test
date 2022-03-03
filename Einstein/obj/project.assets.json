@@ -9656,11 +9656,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Workspace\\dotnet\\Einstein\\Einstein\\Einstein.csproj",
+      "projectUniqueName": "C:\\Users\\Adriano\\Desktop\\netcore-test\\Einstein\\Einstein.csproj",
       "projectName": "Einstein",
-      "projectPath": "D:\\Workspace\\dotnet\\Einstein\\Einstein\\Einstein.csproj",
+      "projectPath": "C:\\Users\\Adriano\\Desktop\\netcore-test\\Einstein\\Einstein.csproj",
       "packagesPath": "C:\\Users\\Adriano\\.nuget\\packages\\",
-      "outputPath": "D:\\Workspace\\dotnet\\Einstein\\Einstein\\obj\\",
+      "outputPath": "C:\\Users\\Adriano\\Desktop\\netcore-test\\Einstein\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Adriano\\AppData\\Roaming\\NuGet\\NuGet.Config",

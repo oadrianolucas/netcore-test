@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Workspace\\dotnet\\Einstein\\Einstein.Tests\\Einstein.Tests.csproj": {}
+    "C:\\Users\\Adriano\\Desktop\\netcore-test\\Einstein.Tests\\Einstein.Tests.csproj": {}
   },
   "projects": {
-    "D:\\Workspace\\dotnet\\Einstein\\Einstein.Tests\\Einstein.Tests.csproj": {
+    "C:\\Users\\Adriano\\Desktop\\netcore-test\\Einstein.Tests\\Einstein.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Workspace\\dotnet\\Einstein\\Einstein.Tests\\Einstein.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\Adriano\\Desktop\\netcore-test\\Einstein.Tests\\Einstein.Tests.csproj",
         "projectName": "Einstein.Tests",
-        "projectPath": "D:\\Workspace\\dotnet\\Einstein\\Einstein.Tests\\Einstein.Tests.csproj",
+        "projectPath": "C:\\Users\\Adriano\\Desktop\\netcore-test\\Einstein.Tests\\Einstein.Tests.csproj",
         "packagesPath": "C:\\Users\\Adriano\\.nuget\\packages\\",
-        "outputPath": "D:\\Workspace\\dotnet\\Einstein\\Einstein.Tests\\obj\\",
+        "outputPath": "C:\\Users\\Adriano\\Desktop\\netcore-test\\Einstein.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Adriano\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Workspace\\dotnet\\Einstein\\Einstein\\Einstein.csproj": {
-                "projectPath": "D:\\Workspace\\dotnet\\Einstein\\Einstein\\Einstein.csproj"
+              "C:\\Users\\Adriano\\Desktop\\netcore-test\\Einstein\\Einstein.csproj": {
+                "projectPath": "C:\\Users\\Adriano\\Desktop\\netcore-test\\Einstein\\Einstein.csproj"
               }
             }
           }
@@ -94,14 +94,14 @@
         }
       }
     },
-    "D:\\Workspace\\dotnet\\Einstein\\Einstein\\Einstein.csproj": {
+    "C:\\Users\\Adriano\\Desktop\\netcore-test\\Einstein\\Einstein.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Workspace\\dotnet\\Einstein\\Einstein\\Einstein.csproj",
+        "projectUniqueName": "C:\\Users\\Adriano\\Desktop\\netcore-test\\Einstein\\Einstein.csproj",
         "projectName": "Einstein",
-        "projectPath": "D:\\Workspace\\dotnet\\Einstein\\Einstein\\Einstein.csproj",
+        "projectPath": "C:\\Users\\Adriano\\Desktop\\netcore-test\\Einstein\\Einstein.csproj",
         "packagesPath": "C:\\Users\\Adriano\\.nuget\\packages\\",
-        "outputPath": "D:\\Workspace\\dotnet\\Einstein\\Einstein\\obj\\",
+        "outputPath": "C:\\Users\\Adriano\\Desktop\\netcore-test\\Einstein\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Adriano\\AppData\\Roaming\\NuGet\\NuGet.Config",
